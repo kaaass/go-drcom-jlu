@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"github.com/Yesterday17/go-drcom-jlu/drcom"
-	"github.com/Yesterday17/go-drcom-jlu/logger"
 	"log"
 	"os"
 	"os/signal"
@@ -43,38 +42,7 @@ func main() {
 		os.Exit(10)
 	}
 
-	// 检查配置文件的 MAC 地址是否与 WiFi / 有线网卡 的 MAC 匹配
-	var MAC string
-	for _, inf := range Interfaces {
-		if inf.Address == cfg.MAC {
-			if inf.IsWireless {
-				logger.Warn("Wireless MAC address detected")
-			}
-			MAC = inf.Address
-			break
-		}
-	}
-
-	// 未检测到对应配置文件的 MAC 地址
-	if MAC == "" {
-		logger.Error("No matching MAC address detected")
-		os.Exit(10)
-	} else {
-		inf := Interfaces[MAC]
-		if !inf.IsSchoolNet() {
-			MAC = ""
-		}
-
-		// 当 MAC 对应的接口未连接时 搜索无线网卡
-		if !inf.Connected {
-			for _, inf2 := range Interfaces {
-				if inf2.IsWireless && inf2.IsSchoolNet() {
-					MAC = inf2.Address
-					break
-				}
-			}
-		}
-	}
+	var MAC string = cfg.MAC
 
 	go watchNetStatus()
 

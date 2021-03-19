@@ -1,5 +1,5 @@
 # Maintainer: Yesterday17 <t@yesterday17.cn>
-pkgname=go-drcom-jlu-git
+pkgname=go-drcom-jlu
 _pkgname=go-drcom-jlu
 pkgver=1.0.7
 pkgrel=8
@@ -14,7 +14,7 @@ makedepends=(
 backup=('etc/go-drcom-jlu/config.json')
 
 source=(
-	"$_pkgname::git+https://github.com/Yesterday17/go-drcom-jlu.git"
+	"$_pkgname::git+https://github.com/kaaass/go-drcom-jlu.git"
 )
 
 md5sums=('SKIP')
