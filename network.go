@@ -216,8 +216,8 @@ func watchNetStatus() {
 }
 
 func NewClient(MAC string) {
-	inf := Interfaces[MAC]
-	logger.Infof("- Connecting with interface %s - %s", inf.Name, inf.Address)
+	// inf := Interfaces[MAC]
+	logger.Infof("- Connecting with MAC %s", MAC)
 
 	activeMAC = MAC
 	client = drcom.New(cfg)
